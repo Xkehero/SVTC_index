@@ -1,0 +1,182 @@
+
+const starContainer = document.querySelector(".star-container");
+const title = document.querySelector(".title");
+const subTitle = document.querySelector(".sub-title");
+const warning = document.querySelector(".warning");
+const teachers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43"];
+const messages = ["刘巧老师", "田雪梅老师", "张涵老师", "杨岚老师", "邢晓鹏老师", "成可南老师", "张明经老师", "李婵老师", "邱欢堂老师", "杜旋老师", "马晓荣老师", "康杨老师", "毕智超老师", "郑亦飞老师", "郭瑾老师", "王玲老师", "马英老师", "马圆圆老师", "彭虹娅老师", "王琼老师", "王玥老师", "张德增老师", "骆龙", "胡博豪", "雷一妍", "王晨阳", "吴仁芳", "康健", "贺佳豪", "王烨朝", "李振华", "高阳学长", "陈飞宇", "张子航学长", "龚承蓉", "郝映林", "贾鑫旭", "南波", " 王汉毅", "王新翔", "武浩森", "王誉博"];
+
+const titleRect = title.getBoundingClientRect();
+const subTitleRect = subTitle.getBoundingClientRect();
+const warningRect = warning.getBoundingClientRect();
+const centerX = titleRect.left + titleRect.width / 2;
+const centerY = titleRect.top + titleRect.height / 2;
+
+const stars = [];
+const numGroups = 3;
+const IMPORTANT_COUNT = 5; // 重要成员数量
+
+function isInMiddleDiv(x, y) {
+    const middleDivs = [titleRect, subTitleRect, warningRect];
+    for (let i = 0; i < middleDivs.length; i++) {
+        const rect = middleDivs[i];
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function createStar(index) {
+    const b = document.createElement("div");
+    const c = document.createElement("div");
+
+    b.classList.add("star");
+    let finalX, finalY;
+    do {
+        finalX = Math.random() * window.innerWidth;
+        finalY = Math.random() * window.innerHeight;
+    } while (isInMiddleDiv(finalX, finalY));
+
+    b.style.left = centerX + "px";
+    b.style.top = centerY + "px";
+    const minSize = 3;
+    const maxSize = 8;
+    const finalSize = minSize + Math.random() * (maxSize - minSize);
+    b.style.width = "0px";
+    b.style.height = "0px";
+    starContainer.appendChild(b);
+
+    c.classList.add("message");
+    c.style.left = finalX + 10 + "px";
+    c.style.top = finalY + 10 + "px";
+    starContainer.appendChild(c);
+
+    const group = Math.floor(Math.random() * numGroups);
+    const speed = 0.5 + Math.random() * 1;
+    let twinkleDuration;
+    let delay = Math.random() * 3;
+
+    if (index < IMPORTANT_COUNT) {
+        twinkleDuration = 0.5 + Math.random() * 1; // 重要成员星星闪烁更快
+    } else {
+        twinkleDuration = 1 + Math.random() * 3;
+    }
+
+    const starData = {
+        element: b,
+        messageElement: c,
+        finalX,
+        finalY,
+        currentX: centerX,
+        currentY: centerY,
+        speed,
+        finalSize,
+        group,
+        twinkleDuration,
+        delay
+    };
+    stars.push(starData);
+
+    b.addEventListener("mouseover", () => {
+        document.querySelectorAll(".message").forEach(message => {
+            message.style.display = "none";
+            message.textContent = "";
+            message.classList.remove("show");
+        });
+        c.style.display = "block";
+        setTimeout(() => {
+            c.classList.add("show");
+            typeWriter(c, messages[index]);
+        }, 50);
+    });
+
+    b.addEventListener("mouseout", () => {
+        c.classList.remove("show");
+        setTimeout(() => {
+            c.style.display = "none";
+            c.textContent = "";
+            createHearts(finalX, finalY);
+        }, 300);
+    });
+}
+
+function createHearts(x, y) {
+    const numHearts = 3; // 爱心数量
+    for (let i = 0; i < numHearts; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.textContent = "⭐";
+        const offsetX = (Math.random() - 0.5) * 20;
+        const offsetY = (Math.random() - 0.5) * 20;
+        heart.style.left = x + offsetX + "px";
+        heart.style.top = y + offsetY + "px";
+        starContainer.appendChild(heart);
+        setTimeout(() => {
+            heart.remove();
+        }, 2000); // 2 秒后移除爱心
+    }
+}
+
+for (let i = 0; i < teachers.length; i++) {
+    createStar(i);
+}
+
+function animateStars() {
+    let allStarsArrived = true;
+    stars.forEach(star => {
+        const dx = star.finalX - star.currentX;
+        const dy = star.finalY - star.currentY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > star.speed) {
+            allStarsArrived = false;
+            star.currentX += dx / distance * star.speed;
+            star.currentY += dy / distance * star.speed;
+            star.element.style.left = star.currentX + "px";
+            star.element.style.top = star.currentY + "px";
+
+            const progress = 1 - (distance / Math.sqrt(Math.pow(star.finalX - centerX, 2) + Math.pow(star.finalY - centerY, 2)));
+            star.element.style.opacity = progress;
+            star.element.style.width = (star.finalSize * progress) + "px";
+            star.element.style.height = (star.finalSize * progress) + "px";
+            star.element.style.boxShadow = `0 0 ${5 * progress}px rgba(255, 255, 255, ${0.8 * progress})`;
+        } else {
+            star.currentX = star.finalX;
+            star.currentY = star.finalY;
+            star.element.style.left = star.finalX + "px";
+            star.element.style.top = star.finalY + "px";
+            star.element.style.opacity = 1;
+            star.element.style.width = star.finalSize + "px";
+            star.element.style.height = star.finalSize + "px";
+            star.element.style.boxShadow = `0 0 5px rgba(255, 255, 255, 0.8)`;
+
+            if (!star.element.style.animation) {
+                const animationName = star.twinkleDuration < 1.5 ? 'fast-twinkle' : 'twinkle';
+                star.element.style.animation = `${animationName} ${star.twinkleDuration}s ease-in-out infinite alternate ${star.delay}s`;
+            }
+        }
+    });
+
+    if (!allStarsArrived) {
+        requestAnimationFrame(animateStars);
+    }
+}
+
+animateStars();
+
+function typeWriter(e, t) {
+    let s = 0;
+    const a = setInterval(() => {
+        s < t.length ? (e.textContent += t.charAt(s), s++) : clearInterval(a);
+    }, 100);
+}
+
+// 添加自动播放音乐的代码
+const audio = new Audio('files\\福禄寿FloruitShow - Intro.mp3'); // 请替换为实际的音频文件路径
+audio.loop = false; // 设置循环播放
+audio.volume = 0.5; // 设置音量为50%
+
+document.addEventListener('DOMContentLoaded', () => {
+    audio.play();
+});

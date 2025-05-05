@@ -1,0 +1,541 @@
+:root {
+    --primary-color: #007FCA;
+    --secondary-color: #009E40;
+    --accent-color: #FBBC05;
+    --accent-color-alt: #34A853;
+    --bg-fallback: #f1f3f4;
+    --card-bg: rgba(255, 255, 255, 0.98);
+    --text-primary: #1f1f1f;
+    --text-secondary: #5f6368;
+    --header-text: #ffffff;
+    --card-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --border-radius: 10px;
+    --scrollbar-thumb: var(--primary-color);
+    --scrollbar-track: #e0e0e0;
+    --dropdown-bg: #ffffff;
+    --dropdown-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* --- Reset & Box Model --- */
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Simplified background */
+    background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
+    background-color: var(--bg-fallback);
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    /* Sticky footer layout */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Layout --- */
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 40px auto 0;
+    padding: 0 20px 80px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* --- Typography --- */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+h2.section-title {
+    margin-top: 80px;
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--accent-color);
+    display: inline-block;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Media --- */
+img {
+    display: block;
+    /* Prevents image distortion */
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header --- */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Reduced blur for performance */
+    background-color: rgba(0, 127, 202, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: var(--header-text);
+    padding: 15px 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.app-header .logo img {
+    height: 40px;
+    margin-right: 15px;
+    vertical-align: middle;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.app-header .title {
+    font-size: 1.6em;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Card --- */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background-color: var(--card-bg);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 30px;
+    text-align: center;
+    overflow: visible;
+    /* Smooth transitions */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 1s ease-out;
+}
+
+.card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--primary-color);
+    z-index: 10;
+}
+
+.card:active {
+    transform: translateY(-3px) scale(0.98);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0.95;
+}
+
+.card h3 {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.card h3 a:hover {
+    color: var(--primary-color);
+}
+
+.card p {
+    flex: 1;
+    /* Grow to fill space */
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.card .icon {
+    font-size: 52px;
+    margin-bottom: 20px;
+    /* Smooth icon animation */
+    transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.card:hover .icon {
+    transform: scale(1.1) rotate(10deg) translateY(-3px);
+    opacity: 1;
+}
+
+/* Specific card icons */
+#quick-links .card .icon {
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+#quick-links .card:hover .icon {
+    color: var(--primary-color);
+}
+
+#manuals .card .icon,
+#test .card .icon {
+    color: var(--accent-color-alt);
+    opacity: 0.8;
+}
+
+#manuals .card:hover .icon,
+#test .card:hover .icon {
+    color: var(--accent-color-alt);
+}
+
+#support .card .icon {
+    color: var(--accent-color);
+    opacity: 0.8;
+}
+
+#support .card:hover .icon {
+    color: var(--accent-color);
+}
+
+/* --- Dropdown Menu --- */
+.dropdown-menu {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+
+    transform-origin: top center;
+    min-width: 500px;
+    background-color: var(--dropdown-bg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--dropdown-shadow);
+    padding: 10px 0;
+    z-index: 11;
+    opacity: 0;
+    visibility: hidden;
+    /* Smooth dropdown animation */
+    transition: all 0.2s ease-out;
+}
+
+.card.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.dropdown-menu ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.dropdown-menu li {
+    list-style: none;
+    padding: 5px;
+}
+
+/* --- Footer --- */
+.app-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    text-align: center;
+    padding: 0px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.85);
+    /* Reduced blur for performance */
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.app-footer p {
+    margin-bottom: 5px;
+}
+
+.app-footer a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: underline;
+}
+
+.app-footer a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    main {
+        padding-bottom: 90px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        padding: 25px;
+        min-height: 180px;
+    }
+
+    .card .icon {
+        font-size: 45px;
+    }
+
+    .card h3 {
+        font-size: 1.15em;
+    }
+
+    .dropdown-menu {
+        min-width: 180px;
+    }
+
+    .dropdown-menu li a {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .app-footer {
+        padding: 10px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+        background-attachment: fixed;
+    }
+
+    main {
+        margin-top: 20px;
+        padding-bottom: 100px;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 5px 0 0 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .card.has-dropdown:hover .dropdown-menu {
+        transform: none;
+    }
+
+    .dropdown-menu li a {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 2px;
+        color: var(--primary-color);
+        background-color: transparent;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: rgba(0, 127, 202, 0.1);
+    }
+
+    h2.section-title {
+        font-size: 1.5em;
+        margin-bottom: 50px;
+        margin-top: 60px;
+    }
+
+    .app-footer {
+        padding: 8px;
+        font-size: 0.8em;
+    }
+
+    .app-footer p {
+        margin-bottom: 3px;
+    }
+}
+
+/* --- Quick Nav --- */
+.quick-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: none;
+    /* Removed blur */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.quick-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.quick-nav li {
+    margin-left: 15px;
+}
+
+.quick-nav a {
+    color: var(--header-text);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.quick-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Baidu Search --- */
+.baidu-search-container {
+    text-align: center;
+    width: 100%;
+    /* 修改为 100% 以适应不同屏幕 */
+    margin: 0 auto;
+    /* 使搜索框居中 */
+}
+
+.baidu_logo {
+    margin: 0 auto 20px;
+}
+
+.baidu-search-container input[type="text"] {
+    width: 80%;
+    /* 增加搜索框宽度 */
+    max-width: 500px;
+    /* 增加最大宽度 */
+    padding: 15px;
+    /* 增加内边距 */
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    /* 增加圆角 */
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影 */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* 过渡效果 */
+}
+
+.baidu-search-container input[type="text"]:focus {
+    border-color: var(--primary-color);
+    /* 聚焦时改变边框颜色 */
+    box-shadow: 0 2px 8px rgba(0, 127, 202, 0.3);
+    /* 聚焦时改变阴影 */
+    outline: none;
+    /* 去除默认聚焦边框 */
+}
+
+.baidu-search-container input[type="submit"] {
+    padding: 15px 25px;
+    /* 增加内边距 */
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    /* 增加圆角 */
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* 过渡效果 */
+}
+
+.baidu-search-container input[type="submit"]:hover {
+    background-color: #0063a0;
+    /* 悬停时改变背景颜色 */
+    box-shadow: 0 2px 8px rgba(0, 127, 202, 0.3);
+    /* 悬停时改变阴影 */
+}
+
+/* --- Robot Dialog --- */
+#YxRobotDialog p {
+    margin: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* --- Utility --- */
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+#test .grid-container {
+    display: flex;
+    /* 使用 Flexbox */
+    flex-direction: row;
+    /* 横向排列 */
+    justify-content: flex-start;
+    /* 或其他对齐方式 */
+    align-items: stretch;
+    /* 垂直方向上拉伸 */
+    gap: 20px;
+    /* 卡片之间的间距 */
+}
+
+/* 如果需要响应式，可以添加 media query */
+@media (max-width: 768px) {
+    #test .grid-container {
+        flex-direction: column;
+        /* 小屏幕上改为竖排 */
+    }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <script type="text/javascript" src="chaoxingAI.js" defer></script>
+    <link rel="stylesheet" href="./index/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多媒体设备导航页</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- 粽子元素 -->
+    <div class="zongzi-container">
+        <div class="zongzi"></div>
+        <div class="zongzi"></div>
+        <div class="zongzi"></div>
+        <div class="zongzi"></div>
+        <div class="zongzi"></div>
+    </div>
+    <!-- 龙舟元素 -->
+    <div class="dragon-boat"></div>
+
+    <header class="app-header">
+        <div class="logo">
+            <img src="https://www.svtc.edu.cn/static/images/f-logo.png" alt="学校 Logo">
+        </div>
+        <div class="title"></div>
+
+        <nav class="quick-nav">
+            <ul>
+                <li><a href="#quick-links">常用链接</a></li>
+                <li><a href="#test">设备状态测试</a></li>
+                <li><a href="#manuals">设备手册</a></li>
+                <li><a href="#support">支持服务</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="quick-links">
+
+            <div class="baidu-search-container">
+                <img src="https://www.baidu.com/img/flexible/logo/pc/peak-result.png" alt="百度 logo"
+                    style="width: 202px;height: 66px" class="baidu_logo">
+                <form action="https://www.baidu.com/s" method="get" target="_blank" id="baidu-search-form">
+                    <input name="wd" type="text" size="30" placeholder="百度搜索" id="baidu-search-input">
+                    <input type="submit" value="搜索" id="baidu-search-button">
+                </form>
+            </div>
+
+            <div class="grid-container">
+
+            </div>
+            <h2 class="section-title">常用网址导航</h2>
+            <div class="grid-container">
+                <div class="card has-dropdown reveal-on-scroll"><i class="material-icons icon">school</i>
+                    <h3><a href="https://www.svtc.edu.cn/" target="_blank">学院官网</a></h3>
+                    <p>访问学院官方网站群。</p>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="https://www.svtc.edu.cn" target="_blank">陕西职业技术学院官网</a></li>
+                            <li><a href="https://dxxy.svtc.edu.cn/" target="_blank">电子信息工程学院</a></li>
+                            <li><a href="https://eb.svtc.edu.cn/" target="_blank">新商科学院</a></li>
+                            <li><a href="https://lyx.svtc.edu.cn/" target="_blank">旅游与文化学院</a></li>
+                            <li><a href="https://tb.svtc.edu.cn/" target="_blank">对外贸易学院</a></li>
+                            <li><a href="https://jgxy.svtc.edu.cn/" target="_blank">建筑工程学院</a></li>
+                            <li><a href="https://coa.svtc.edu.cn/" target="_blank">汽车工程与通用航空学院</a></li>
+                            <li><a href="https://szkb.svtc.edu.cn/" target="_blank">马克思主义学院</a></li>
+                            <li><a href="https://jckb.svtc.edu.cn/" target="_blank">基础课部</a></li>
+                            <li><a href="https://gj.svtc.edu.cn/" target="_blank">国际合作交流学院</a></li>
+                            <li><a href="https://pe.svtc.edu.cn/" target="_blank">学前教育学院</a></li>
+                            <li><a href="https://glx.svtc.edu.cn/" target="_blank">人工智能学院</a></li>
+                            <li><a href="https://hyxy.svtc.edu.cn/" target="_blank">环境艺术学院</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="#" target="_blank" class="card reveal-on-scroll">
+                    <i class="material-icons icon">local_library</i>
+                    <h3>陕职教学资源管理平台</h3>
+                    <p>陕职好课,尽在眼前!</p>
+                </a>
+                <a href="https://www.icve.com.cn/index" target="_blank" class="card reveal-on-scroll">
+                    <i class="material-icons icon">co_present</i>
+                    <h3>智慧职教icve</h3>
+                    <p>职业教育,前途广阔,大有可为</p>
+                </a>
+                <a href="https://passport.zhihuishu.com/login" target="_blank" class="card reveal-on-scroll">
+                    <i class="material-icons icon">park</i>
+                    <h3>智慧树</h3>
+                    <p>智慧树是全球知名的学分课程服务平台</p>
+                </a>
+                <a href="http://jwc.svtc.edu.cn/jwglxt/xtgl/login_slogin.html" target="_blank"
+                    class="card reveal-on-scroll">
+                    <i class="material-icons icon">computer</i>
+                    <h3>教务系统</h3>
+                    <p>查询成绩、课表。</p>
+                </a>
+                <a href="http://swzx.svtc.edu.cn:5202/#/index" target="_blank" class="card reveal-on-scroll">
+                    <i class="material-icons icon">assignment</i>
+                    <h3>网上办事大厅</h3>
+                    <p>一网通办</p>
+                </a>
+
+                <a href="https://www.bilibili.com/" target="_blank" class="card reveal-on-scroll">
+                    <i class="material-icons icon">public</i>
+                    <h3>哔哩哔哩</h3>
+                    <p>哔哩哔哩(゜-゜)つロ干杯~</p>
+                </a>
+            </div>
+        </section>
+
+
+        <section id="test">
+            <h2 class="section-title">设备状态测试</h2>
+            <div class="grid-container">
+                <a href="./files/video.mp4" target="_blank" class="card reveal-on-scroll"> <i
+                        class="material-icons icon">smart_display</i>
+                    <h3>音视频测试(FAQ)</h3>
+                    <p>您可以播放示例视频，测试设备音响或显示状态。<br>《嗵嗵VJ》-DOUDOU,仅供音视频测试</p>
+                </a>
+                <a href=./files/测试用PPT.pptx target="_blank" class="card reveal-on-scroll"> <i
+                        class="material-icons icon">subscriptions</i>
+                    <h3>PPT测试</h3>
+                    <p>您可以下载此测试PPT，双击打开测试WPS。</p>
+                </a>
+            </div>
+        </section>
+        <section id="manuals">
+            <h2 class="section-title">设备使用手册</h2>
+            <div class="grid-container">
+                <a href="./files/多功能讲桌操作手册.pdf" target="_blank" class="card reveal-on-scroll"> <i
+                        class="material-icons icon">desktop_windows</i>
+                    <h3>多媒体讲台</h3>
+                    <p>了解多媒体讲台的开关、连接和基本操作。</p>
+                </a>
+                <a href="./files/投影仪故障操作手册.pdf" target="_blank" class="card reveal-on-scroll"> <i
+                        class="material-icons icon">settings_input_hdmi</i>
+                    <h3>投影仪使用</h3>
+                    <p>投影仪的连接、画面调整和常见问题。</p>
+                </a>
+                <a href="#" target="_blank" class="card reveal-on-scroll"> <i class="material-icons icon">mic</i>
+                    <h3>无线麦克风</h3>
+                    <p>无线麦克风的配对、充电和使用方法。</p>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="support">
+            <h2 class="section-title">帮助与支持</h2>
+            <div class="grid-container">
+                <a href="#" class="card reveal-on-scroll"> <i class="material-icons icon">help_outline</i>
+                    <h3>常见问题(FAQ)</h3>
+                    <p>查看多媒体设备使用的常见问题解答。</p>
+                </a>
+                <a href="#" class="card reveal-on-scroll" id="tech-support-link">
+                    <i class="material-icons icon">phone</i>
+                    <h3>数据信息中心</h3>
+                    <p>遇到问题？请致电数据信息中心。</p>
+                </a> <a
+                    href="https://active.clewm.net/EywsUA?qrurl=http://qr17.cn/EywsUA&gtype=1&key=5886117a8bd42d1cb452091d59d2f732a439ac0171"
+                    target="_blank" class="card reveal-on-scroll"> <i class="material-icons icon">support_agent</i>
+                    <h3>在线报修</h3>
+                    <p>登录后,前往网上办事大厅进行报修</p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2025 陕西职业技术学院数据信息中心. 保留所有权利. &nbsp &nbsp Designed by <a href="./thanks.html" target="_blank">波北.</a>
+        </p>
+        <p>版权声明：“白小鹿“形象截取自陕西职业技术学院微信公众号，感谢”白小鹿,长小雀”制作团队。</p>
+    </footer>
+
+
+    <script src="./index/index.js">
+
+    </script>
+    <script type="text/javascript" src="./index/chaoxingAI.js"></script>
+    <script type="text/javascript">
+        YxRobotSdkJs.init("https://ai-spvec.wzxy.com/checkRobot?fid=29891&appId=44bd4d07-8667-4662-a4bf-e93592952e15&openType=openUrl");
+    </script>
+</body>
+
+</html>    
